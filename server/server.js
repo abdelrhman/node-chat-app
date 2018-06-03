@@ -20,12 +20,11 @@ io.on('connection', socket => {
 
   socket.on('createMessage', message => {
     console.log('Create message', message);
-  });
-
-  socket.emit('newMessage', {
-    from: 'Podo',
-    text: 'Hello World',
-    createdAt: 123456
+    io.emit('newMessage', {
+      from: message.from,
+      text: message.text,
+      createdAt: new Date().getTime()
+    });
   });
 });
 
